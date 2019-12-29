@@ -3,12 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="login.css" rel="stylesheet">
 </head>
 <body>
-    <form action="/login" method="POST">
-        <input name="username" type="text">
-        <input name="password" type="password">
-        <input type="submit" value="Login">
-    </form>
+<form action="/login" method="POST" class="login-form">
+    <h1>Login</h1>
+    <div class="txtb">
+        <input id="username" name="username" type="text">
+        <span data-placeholder="Username"></span>
+    </div>
+    <div class="txtb">
+        <input id="password" name="password" type="password">
+        <span data-placeholder="Password"></span>
+    </div>
+    <input type="submit" class="logbtn" value="Login">
+    <div class="bottom-text">
+        Don't have account? <a href="register">Sign up</a>
+    </div>
+</form>
+<script type="text/javascript">
+   var addHintFocusIfNotEmpty = function(element) {
+     if (element.value != "") {
+       element.classList.add("hintfocus");
+     }
+   }
+   var addFocusEffect = function(element) {
+       element.onfocus = function() {
+         element.classList.add("focus");
+         element.classList.add("hintfocus");
+       }
+       element.onblur = function() {
+           element.classList.remove("focus")
+           if (element.value == "") {
+             element.classList.remove("hintfocus");
+           }
+       }
+       addHintFocusIfNotEmpty(element);
+   }
+   var username = document.getElementById("username")
+   var password = document.getElementById("password")
+   addFocusEffect(username);
+   addFocusEffect(password);
+</script>
 </body>
 </html>
